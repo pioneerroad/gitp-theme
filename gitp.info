@@ -1,0 +1,26 @@
+name = Get In The Picture
+description = Custom Theme for the Get In the Picture Website
+core = 7.x
+
+stylesheets[all][] = assets/css/main.css
+
+regions[top] = Top
+regions[header] = Header
+regions[main_menu] = Main Menu
+regions[sidebar_first] = First Sidebar
+regions[content] = Main Content Area
+regions[content_bottom] = Content Area (Bottom)
+regions[sidebar_second] = Second Sidebar
+regions[footer_col1] = Footer (First Column)
+regions[footer_col2] = Footer (Second Column)
+regions[footer_col3] = Footer (Third Column)
+regions[footer_col4] = Footer (Fourth Column)
+regions[development] = Development Info (Temporary)
+
+features[] = logo
+features[] = name
+features[] = search
+features[] = favicon
+features[] = main_menu
+
+
