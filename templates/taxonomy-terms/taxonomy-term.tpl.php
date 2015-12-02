@@ -47,7 +47,7 @@
   <?php endif; ?>
 
   <div class="content">
-    <?php print render($content); ?>
+    <?php print render($term->description); ?>
   </div>
 
 </div>
