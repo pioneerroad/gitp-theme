@@ -79,46 +79,14 @@
  *
  * @ingroup themeable
  */
-hide($content['comments']);
-hide($content['links']);
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-
     <div class="content"<?php print $content_attributes; ?>>
-        <?php if($content['group_photo']): ?>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body"><?php print(render($content['group_photo']['field_image'])); ?></div>
-                        <div class="panel-footer"><?php print(render($content['group_photo']['field_image_caption'])); ?></div>
-                    </div>
-                    <div class="metadata relationships">
-                        <?php print(render($content['group_relationships'])); ?>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <?php print(render($content['group_content'])); ?>
-                    <?php if($content['field_contact_details']): ?>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">For more information please contact:</div>
-                            <div class="panel-body"><?php print(render($content['field_contact_details'])); ?></div>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        <?php else: ?>
-            <div class="row">
-                <div class="col-md-12">
-                    <?php print(render($content['group_content'])); ?>
-                    <?php if($content['field_contact_details']): ?>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">For more information please contact:</div>
-                            <div class="panel-body"><?php print(render($content['field_contact_details'])); ?></div>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        <?php endif; ?>
+        <?php
+        // We hide the comments and links now so that we can render them later.
+        hide($content['comments']);
+        hide($content['links']);
+        print render($content);
+        ?>
     </div>
-
 </div>

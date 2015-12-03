@@ -47,7 +47,6 @@
             <div class="row">
                 <div class="col-md-4">
                     <?php print(render($content['field_partner_logo'])); ?>
-                    <?php print(render($content['field_partner_website'])); ?>
                 </div>
                 <div class="col-md-8">
                     <?php print render($title_prefix); ?>

@@ -36,7 +36,7 @@
 <div class="profile"<?php print $attributes; ?>>
   <div class="row">
     <?php print(render($content['field_member_fullname'])); ?>
-    <?php if($rscg_member): ?><div class="member-badge"><div><span class="glyphicon glyphicon-certificate"></span><?php print(t('RSCG Member')); ?></div></div><?php endif; ?>
+    <?php if($rscg_member): ?><div class="member-badge"><div><span class="glyphicon glyphicon-certificate"></span><?php print(t('RSGC Member')); ?></div></div><?php endif; ?>
   </div>
   <div class="clearfix"></div>
   <div class="container">
