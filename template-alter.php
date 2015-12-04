@@ -17,11 +17,13 @@ function gitp_page_alter(&$page) {
         }
     }
 
-    if($page['content']['system_main']['term_heading']['term']['#entity_type'] == 'taxonomy_term') {
-        $page['content_bottom']['system_main']['nodes'] = $page['content']['system_main']['nodes'];
-        $page['content_bottom']['system_main']['pager'] = $page['content']['system_main']['pager'];
-        unset($page['content']['system_main']['nodes']);
-        unset($page['content']['system_main']['pager']);
+    if(isset($page['content']['system_main']['term_heading'])) { // This is a taxonomy term page
+        if($page['content']['system_main']['term_heading']['term']['#entity_type'] == 'taxonomy_term') {
+            $page['content_bottom']['system_main']['nodes'] = $page['content']['system_main']['nodes'];
+            $page['content_bottom']['system_main']['pager'] = $page['content']['system_main']['pager'];
+            unset($page['content']['system_main']['nodes']);
+            unset($page['content']['system_main']['pager']);
+        }
     }
 }
 

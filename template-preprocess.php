@@ -102,9 +102,15 @@ function gitp_preprocess_node__blog(&$variables) {
 
 function gitp_preprocess_breadcrumb(&$variables) {
     if($current = menu_get_item()) {
-        $title = !empty($current['title']) ? $current['title'] : $current['page_arguments'][0]->name;
-        $variables['breadcrumb'][] = $title;
+        if (!empty($current['title'])) {
+            $title = $current['title'];
+        } else if (!empty($current['page_arguments'][0])) {
+            $title = $current['page_arguments'][0]->name;
+        } else {
+            $title = '';
+        }
     }
+    $variables['breadcrumb'][] = $title;
 }
 
 function gitp_preprocess_field(&$variables) {
