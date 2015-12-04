@@ -150,10 +150,10 @@ function gitp_preprocess_field__field_resources(&$variables) {
 
 
                 if ($lang_value == $delta_lang) {
+                    $url = '';
                     if (isset($fc_item['field_fc_resource_upload_file'])) {
                         $url = file_create_url($fc_item['field_fc_resource_upload_file']['#items'][0]['uri']);
-                    }
-                    if (isset($fc_item['field_fc_resource_link'])) {
+                    } else if (isset($fc_item['field_fc_resource_link'])) {
                         $url = $fc_item['field_fc_resource_link']['#items'][0]['display_url'];
                     }
                     if (!array_key_exists($title, $resources)) {
