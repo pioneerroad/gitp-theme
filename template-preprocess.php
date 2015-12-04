@@ -154,7 +154,6 @@ function gitp_preprocess_field__field_resources(&$variables) {
                     if (isset($fc_item['field_fc_resource_upload_file'])) {
                         $url = file_create_url($fc_item['field_fc_resource_upload_file']['#items'][0]['uri']);
                     } else if (isset($fc_item['field_fc_resource_link'])) {
-                        kpr($fc_item);
                         $url = $fc_item['field_fc_resource_link']['#items'][0]['url'];
                     }
                     if (!array_key_exists($title, $resources)) {

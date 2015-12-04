@@ -1,1 +1,0 @@
-<?php kpr('Trace'); ?>
