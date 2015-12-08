@@ -210,10 +210,10 @@ function gitp_preprocess_field__field_documents(&$variables) {
                     if (isset($fc_item['field_fc_document_file'])) {
                         $url = file_create_url($fc_item['field_fc_document_file']['#items'][0]['uri']);
                     }
-                    if (!array_key_exists($title, $resources)) {
+                    if (!array_key_exists($title, $documents)) {
                         $documents[$title] = array();
                     }
-                    if (!array_key_exists($lang_value, $resources[$title])) {
+                    if (!array_key_exists($lang_value, $documents[$title])) {
                         $documents[$title][$lang_value] = array();
                     }
                     $documents[$title][$lang_value] = $url;
