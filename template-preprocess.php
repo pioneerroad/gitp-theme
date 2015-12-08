@@ -122,6 +122,13 @@ function gitp_preprocess_field(&$variables) {
         }
 
     }
+    if(in_array('field__field_documents',$theme_hook_suggestions) && in_array('field__field_collection',$theme_hook_suggestions)) {
+        $fn = 'gitp_preprocess_field__field_documents';
+        if (function_exists($fn)) {
+            $fn($variables);
+        }
+
+    }
     $target_bundles = array('resources','blog','news','event');
     if (in_array($variables['element']['#bundle'],$target_bundles)) {
         $variables['display_field_icon'] = true;
@@ -200,21 +207,19 @@ function gitp_preprocess_field__field_documents(&$variables) {
 
                 if ($lang_value == $delta_lang) {
                     $url = '';
-                    if (isset($fc_item['field_fc_resource_upload_file'])) {
-                        $url = file_create_url($fc_item['field_fc_resource_upload_file']['#items'][0]['uri']);
-                    } else if (isset($fc_item['field_fc_resource_link'])) {
-                        $url = $fc_item['field_fc_resource_link']['#items'][0]['url'];
+                    if (isset($fc_item['field_fc_document_file'])) {
+                        $url = file_create_url($fc_item['field_fc_document_file']['#items'][0]['uri']);
                     }
                     if (!array_key_exists($title, $resources)) {
-                        $resources[$title] = array();
+                        $documents[$title] = array();
                     }
                     if (!array_key_exists($lang_value, $resources[$title])) {
-                        $resources[$title][$lang_value] = array();
+                        $documents[$title][$lang_value] = array();
                     }
-                    $resources[$title][$lang_value] = $url;
+                    $documents[$title][$lang_value] = $url;
                 } else {
-                    if (!isset($resources[$title][$lang_value])) {
-                        $resources[$title][$lang_value] = NULL;
+                    if (!isset($documents[$title][$lang_value])) {
+                        $documents[$title][$lang_value] = NULL;
                     }
                 }
             }
@@ -222,7 +227,7 @@ function gitp_preprocess_field__field_documents(&$variables) {
         $processed[$lang_value] = TRUE;
     }
 
-    $variables['element']['resources_table_data'] = $resources;
+    $variables['element']['resources_table_data'] = $documents;
     $variables['element']['available_language_count'] = $lang_count;
 }
 
