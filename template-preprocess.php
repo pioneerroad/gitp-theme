@@ -191,7 +191,7 @@ function gitp_preprocess_field__field_resources(&$variables) {
  */
 function gitp_preprocess_field__field_documents(&$variables) {
     $items = $variables['items'];
-    $resources = array();
+    $documents = array();
 
     $fields = field_info_fields();
     $languages = list_allowed_values($fields['field_fc_resource_language']);
