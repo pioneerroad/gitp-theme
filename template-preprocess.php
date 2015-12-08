@@ -177,6 +177,55 @@ function gitp_preprocess_field__field_resources(&$variables) {
     $variables['element']['available_language_count'] = $lang_count;
 }
 
+/**
+ * hook_preprocess_field__field_resources()
+ * Prepare resource data from field collection to create file/language table for resources
+ * @todo add a method to count how many languages are available in language field (currently 4) and pass to template
+ */
+function gitp_preprocess_field__field_documents(&$variables) {
+    $items = $variables['items'];
+    $resources = array();
+
+    $fields = field_info_fields();
+    $languages = list_allowed_values($fields['field_fc_resource_language']);
+    $lang_count = count($languages);
+    $processed = array();
+
+    foreach($languages as $language=>$lang_value) {
+        foreach($items as $key=>$item) {
+            foreach($item['entity']['field_collection_item'] as $delta=>$fc_item) {
+                $delta_lang = $fc_item['field_fc_resource_language'][0]['#markup'];
+                $title = $fc_item['field_fc_resource_file_title'][0]['#markup'];
+
+
+                if ($lang_value == $delta_lang) {
+                    $url = '';
+                    if (isset($fc_item['field_fc_resource_upload_file'])) {
+                        $url = file_create_url($fc_item['field_fc_resource_upload_file']['#items'][0]['uri']);
+                    } else if (isset($fc_item['field_fc_resource_link'])) {
+                        $url = $fc_item['field_fc_resource_link']['#items'][0]['url'];
+                    }
+                    if (!array_key_exists($title, $resources)) {
+                        $resources[$title] = array();
+                    }
+                    if (!array_key_exists($lang_value, $resources[$title])) {
+                        $resources[$title][$lang_value] = array();
+                    }
+                    $resources[$title][$lang_value] = $url;
+                } else {
+                    if (!isset($resources[$title][$lang_value])) {
+                        $resources[$title][$lang_value] = NULL;
+                    }
+                }
+            }
+        }
+        $processed[$lang_value] = TRUE;
+    }
+
+    $variables['element']['resources_table_data'] = $resources;
+    $variables['element']['available_language_count'] = $lang_count;
+}
+
 function gitp_preprocess_image(&$variables) {
     // Unset these since rendering width/height attributes on HTML img tag wrecks havoc on fluid widths
     if (isset($variables['width'])) {
