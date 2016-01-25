@@ -81,7 +81,18 @@
  */
 hide($content['comments']);
 hide($content['links']);
+$server = $_SERVER['SERVER_NAME'];
 ?>
+<!-- JS For Facebook Like/Recommend Widget -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+<!-- End JS for FB Like/Recommend -->
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
     <div class="content"<?php print $content_attributes; ?>>
@@ -94,6 +105,32 @@ hide($content['links']);
                     <p><b><?php print(format_date($created, 'long')); ?></b></p>
                     <?php print(render($content['body'])); ?>
                     <?php print(render($content['group_relationships'])); ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Share this Blog
+                        </div>
+                        <div class="panel panel-body social-media-widgets">
+                            <div class="share-item twitter">
+                                <a href="https://twitter.com/share" class="twitter-share-button"{count}>Tweet</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            </div>
+                            <div class="share-item google">
+                                <!-- Place this tag in your head or just before your close body tag. -->
+                                <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+                                <!-- Place this tag where you want the share button to render. -->
+                                <div class="g-plus" data-action="share" data-width="160" data-href="<?php print($server); print($node_url_);?>"></div>
+                            </div>
+                            <div class="share-item facebook">
+                                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+                            </div>
+                            <div class="share-item email">
+                                <a href="mailto:?Subject=Content Recommendation: <?php print($node->title);?>&amp;Body=http://<?php print($server);print($node_url);?>">
+                                    <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" height="20" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         <?php else: ?>
@@ -102,6 +139,28 @@ hide($content['links']);
                     <p><b><?php print(format_date($created, 'long')); ?></b></p>
                     <?php print(render($content['body'])); ?>
                     <?php print(render($content['group_relationships'])); ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Share this Blog
+                        </div>
+                        <div class="panel panel-body social-media-widgets">
+
+                            <div class="twitter">
+                                <a href="https://twitter.com/share" class="twitter-share-button"{count}>Tweet</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            </div>
+                            <div class="google">
+                                <!-- Place this tag in your head or just before your close body tag. -->
+                                <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+                                <!-- Place this tag where you want the share button to render. -->
+                                <div class="g-plus" data-action="share" data-href="<?php print($server); print($node_url_);?>"></div>
+                            </div>
+                            <div class="facebook">
+                                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>
