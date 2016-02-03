@@ -150,4 +150,25 @@ function gitp_field__field_partner_organisation($variables) {
     return $output;
 }
 
+function gitp_field__country($variables) {
+    $output = '';
+
+    // Render the label, if it's not hidden.
+    if (!$variables['label_hidden']) {
+        $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
+    }
+
+    // Render the items.
+    $output .= '<span class="field-items"' . $variables['content_attributes'] . '>';
+    foreach ($variables['items'] as $delta => $item) {
+        $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+        $output .= '<span class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</span>';
+    }
+    $output .= '</span>';
+
+    // Render the top-level DIV.
+    $output = '<span class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</span>';
+
+    return $output;
+}
 ?>
