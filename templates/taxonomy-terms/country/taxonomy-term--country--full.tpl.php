@@ -249,6 +249,7 @@ $path_to_icons = '/sites/all/themes/custom/gitp/assets/img/ui-icons/';
             <div class="clearfix"></div>
         </div>
     </div>
+      <?php if (isset($content['group_goals'])): ?>
       <div id="national-targets">
           <div class="content-summary-box blog-summary">
               <div class="wrapper">
@@ -294,5 +295,6 @@ $path_to_icons = '/sites/all/themes/custom/gitp/assets/img/ui-icons/';
               </div>
           </div>
       </div>
+      <?php endif; ?>
   </div>
 </div>
