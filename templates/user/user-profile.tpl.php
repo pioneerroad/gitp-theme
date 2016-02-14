@@ -49,7 +49,7 @@
           <?php print(render($content['field_member_about'])); ?>
           <div class="metadata relationships">
             <div class="row"><?php print(render($content['field_partner_organisation'])); ?></div>
-            <div class="row"><?php print(render($content['field_member_position'])); ?></div>
+            <div class="row"><?php print(render($content['field_member_job_title'])); ?></div>
             <div class="row"><?php print(render($content['field_country'])); ?></div>
             <div class="row"><?php print(render($content['field_member_working_country'])); ?></div>
           </div>
