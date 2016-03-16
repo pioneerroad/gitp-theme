@@ -81,7 +81,7 @@
 ?>
 <div class="news-summary content-summary-box col-lg-3 col-md-4 col-sm-6">
     <div class="wrapper">
-        <a href="<?php print($read_more['#path']); ?>">
+        <a href="<?php print($variables['node_url']); ?>">
             <h4 class="item-header"><?php print(t('news')); ?></h4>
             <div class="header-picture">
                 <?php if($content['field_image']): ?>
